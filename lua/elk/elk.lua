@@ -59,9 +59,14 @@ function M.run(bufnr, cmd)
 		return
 	end
 
+	local args = { cmd, path, "--quiet" }
+	if require("elk.options").get().level == "err" then
+		args[#args + 1] = "--relaxed"
+	end
+
 	-- run elk on file
 	vim.system(
-		{ cmd, path, "--quiet" },
+		args,
 		{ text = true },
 		vim.schedule_wrap(function(result)
 			-- remove the temp file

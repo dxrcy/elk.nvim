@@ -4,12 +4,14 @@ local M = {}
 --- @field binary string path to elk binary
 --- @field debounce integer debounce milliseconds in between runs
 --- @field filetypes string[] filetypes to attach to
+--- @field level "info" | "warn" | "err" minimum diagnostic level to report
 
 --- @type Elk.Options.options
 M.options = {
 	binary = "elk",
 	debounce = 400,
 	filetypes = { "asm", "lc3" },
+	level = "info",
 }
 
 --- sets plugin options keeping defaults if unspecified
