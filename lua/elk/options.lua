@@ -28,4 +28,47 @@ function M.get()
 	return M.options
 end
 
+--- validate the config
+---@return boolean
+function M.validate()
+	--- @param message string
+	local function error(message)
+		vim.notify("[elk] " .. message, vim.log.levels.ERROR)
+		return false
+	end
+
+	-- validate types
+	if type(M.options.binary) ~= "string" then
+		return error("option 'binary' must be a string")
+	end
+
+	if type(M.options.debounce) ~= "number" then
+		return error("option 'debounce' must be a number")
+	end
+
+	if type(M.options.filetypes) ~= "table" then
+		return error("option 'filetypes' must be a list of strings")
+	end
+	for _, ft in ipairs(M.options.filetypes) do
+		if type(ft) ~= "string" then
+			return error("option 'filetypes' must be a list of strings")
+		end
+	end
+
+	if not vim.tbl_contains({ "info", "warn", "err" }, M.options.level) then
+		return error("option 'level' must be one of 'info', 'warn', or 'err'")
+	end
+
+	if type(M.options.permit) ~= "string" then
+		return error("option 'permit' must be a string")
+	end
+
+	-- validate binary exists
+	if vim.fn.executable(M.options.binary) == 0 then
+		return error("option 'binary' must be a valid executable")
+	end
+
+	return true
+end
+
 return M
