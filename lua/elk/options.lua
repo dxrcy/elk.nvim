@@ -10,7 +10,7 @@ local M = {}
 --- @type Elk.Options.options
 M.options = {
 	binary = "elk",
-	debounce = 400,
+	debounce = 50,
 	filetypes = { "asm", "lc3" },
 	level = "info",
 	permit = "",
