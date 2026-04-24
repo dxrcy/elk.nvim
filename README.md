@@ -32,6 +32,12 @@ return {
 		-- e.g., "+laser,extension.stack_instructions"
 		-- see https://codeberg.org/dxrcy/elk/src/branch/master/lib/policies.zig
 		permit = "",
+		-- override trap aliases to parse
+		-- can prevent warnings when using non-standard traps such as for ELCI integration
+		-- requires specifying all traps not just new ones
+		-- can be a table like { putn = 0x26, reg = 0x27, ... }
+		-- or a string like "putn=0x26,reg=0x27,..."
+		trap_aliases = nil,
 	},
 }
 ```
