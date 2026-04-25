@@ -49,9 +49,12 @@ local function serialize_permit(permit)
 	return table.concat(permit, ",")
 end
 
---- @param aliases table
+--- @param aliases string | table<string, integer>
 --- @return string
 local function serialize_trap_aliases(aliases)
+	if type(aliases) == "string" then
+		return aliases
+	end
 	local items = {}
 	for alias, vect in pairs(aliases) do
 		table.insert(items, string.format("%s=0x%02x", alias, vect))
@@ -91,12 +94,7 @@ function M.run(bufnr, cmd)
 	end
 	if options.trap_aliases ~= nil then
 		args[#args + 1] = "--trap-aliases"
-		local trap_aliases = options.trap_aliases
-		if type(trap_aliases) == "string" then
-			args[#args + 1] = trap_aliases
-		elseif type(trap_aliases) == "table" then
-			args[#args + 1] = serialize_trap_aliases(trap_aliases)
-		end
+		args[#args + 1] = serialize_trap_aliases(options.trap_aliases)
 	end
 
 	-- run elk on file
