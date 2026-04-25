@@ -90,7 +90,8 @@ function M.validate()
 		return error("option 'level' must be one of 'info', 'warn', or 'err'")
 	end
 
-	if type(M.options.permit) ~= "string"
+	if --
+		type(M.options.permit) ~= "string" --
 		and not is_string_list(M.options.permit)
 	then
 		return error("option 'permit' must be a string or a string[]")
