@@ -83,6 +83,7 @@ function M.run(bufnr, cmd)
 
 	local options = require("elk.options").get()
 
+	-- stylua: ignore
 	local args = {
 		cmd,
 		"--check", path,
