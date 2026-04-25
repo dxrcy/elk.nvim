@@ -58,4 +58,12 @@ function M.stop_debounce(bufnr)
 	end
 end
 
+--- check if buffer filetype is in the configured list
+--- @param bufnr integer
+--- @return boolean
+function M.is_elk_ft(bufnr)
+	local ft = vim.bo[bufnr].filetype
+	return vim.tbl_contains(require("elk.options").get().filetypes, ft)
+end
+
 return M

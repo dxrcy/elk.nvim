@@ -188,14 +188,6 @@ function M.detach(args)
 	vim.api.nvim_clear_autocmds({ group = M.group, buffer = bufnr })
 end
 
---- check if buffer filetype is in the configured list
---- @param bufnr integer
---- @return boolean
-local function is_elk_ft(bufnr)
-	local ft = vim.bo[bufnr].filetype
-	return vim.tbl_contains(require("elk.options").get().filetypes, ft)
-end
-
 --- :Elk command handler
 --- @param args vim.api.keyset.create_user_command.command_args
 function M.command(args)
@@ -203,7 +195,7 @@ function M.command(args)
 
 	if args.args == "start" then
 		-- attach to buffer
-		if vim.api.nvim_buf_is_loaded(bufnr) and is_elk_ft(bufnr) then
+		if vim.api.nvim_buf_is_loaded(bufnr) and utils.is_elk_ft(bufnr) then
 			M.attach({ buf = bufnr })
 		end
 	elseif args.args == "stop" then

@@ -1,3 +1,5 @@
+local utils = require("elk.utils")
+
 local M = {}
 
 -- stylua: ignore
@@ -30,12 +32,6 @@ M.keywords = {
 	"r0", "r1", "r2", "r3", "r4", "r5", "r6", "r7",
 }
 
-local FILETYPES = { asm = true, lc3 = true }
-
-local function is_elk_ft()
-	return FILETYPES[vim.bo.filetype] ~= nil
-end
-
 --- get keyword matches for a given prefix
 --- @param prefix string
 --- @return string[]
@@ -57,7 +53,7 @@ end
 --- @param kind integer
 --- @return table[]
 function M.complete(content, kind)
-	if not is_elk_ft() then
+	if not utils.is_elk_ft(vim.api.nvim_get_current_buf()) then
 		return {}
 	end
 
@@ -148,7 +144,7 @@ M.new = M.blink_source.new
 
 --- called per buffer
 function M.setup_file()
-	if not is_elk_ft() then
+	if not utils.is_elk_ft(vim.api.nvim_get_current_buf()) then
 		return
 	end
 	-- omnifunc requires setting per buffer
