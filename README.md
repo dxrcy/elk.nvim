@@ -43,6 +43,25 @@ return {
 }
 ```
 
+Or `vim.pack`:
+
+```lua
+vim.pack.add({
+	{
+		src = "https://github.com/twhlynch/elk.nvim",
+	},
+})
+
+require("elk").setup({
+	binary = "elk",
+	debounce = 50,
+	filetypes = { "asm", "lc3" },
+	level = "info",
+	permit = {},
+	trap_aliases = nil,
+})
+```
+
 You will also need to set `lc3` to be used for `.asm` and `.lc3` files somewhere in your config.
 
 ```lua
