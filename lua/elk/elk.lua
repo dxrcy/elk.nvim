@@ -22,7 +22,7 @@ function M.parse(output)
 		-- extract parts
 		-- Error: Some error message (/path/to/file.asm:1:2-3:4)
 		-- for now, ignore the file. TODO: actually use the file path
-		local sev, msg, file, ls, cs, le, ce = line:match("^(%a+):%s+(.-)%s+%((.+):(%d+):(%d+)-(%d+):(%d+)%)$")
+		local sev, msg, file, ls, cs, le, ce = line:match("^(%a+):%s+(.-)%s+%(([^:]+):(%d+):(%d+)-(%d+):(%d+)%)$")
 		local severity = sev and severity_map[sev]
 
 		-- insert diagnostic
@@ -64,7 +64,7 @@ function M.serialize_trap_aliases(aliases)
 	end
 	local items = {}
 	for alias, vect in pairs(aliases) do
-		table.insert(items, string.format("%s=0x%02x", alias, vect))
+		table.insert(items, string.format("%s=x%02x", alias, vect))
 	end
 	return table.concat(items, ",")
 end
