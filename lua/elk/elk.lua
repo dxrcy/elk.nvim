@@ -64,7 +64,7 @@ function M.serialize_trap_aliases(aliases)
 	end
 	local items = {}
 	for alias, vect in pairs(aliases) do
-		table.insert(items, string.format("%s=0x%02x", alias, vect))
+		table.insert(items, string.format("%s=x%02x", alias, vect))
 	end
 	return table.concat(items, ",")
 end
