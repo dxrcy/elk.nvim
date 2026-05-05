@@ -74,7 +74,7 @@ end
 function M.deserialize_trap_aliases(str)
 	local aliases = {}
 	for pair in str:gmatch("[^,]+") do
-		local alias, vect = pair:match("([^=]+)=0x(%x+)")
+		local alias, vect = pair:match("([^=]+)=x(%x+)")
 		if alias and vect then
 			aliases[alias] = tonumber(vect)
 		end

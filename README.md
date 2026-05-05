@@ -39,7 +39,7 @@ return {
 		-- can prevent warnings when using non-standard traps such as for ELCI integration
 		-- requires specifying all traps not just new ones
 		-- can be a table like { putn = 0x26, reg = 0x27, ... }
-		-- or a string like "putn=0x26,reg=0x27,..."
+		-- or a string like "putn=x26,reg=x27,..."
 		trap_aliases = nil,
 		-- keyword autocomplete for blink, nvim-cmp, coq_nvim, and omnifunc
 		-- set to false to disable

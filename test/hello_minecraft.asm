@@ -1,4 +1,4 @@
-.ORIG 0x3000
+.ORIG x3000
 
     lea r0, HelloMinecraft
 

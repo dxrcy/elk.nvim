@@ -1,7 +1,7 @@
 ; https://codeberg.org/dxrcy/elk/src/branch/master/examples/fibonacci.asm
 ; https://codeberg.org/dxrcy/elk/src/branch/master/LICENSE
 
-.ORIG 0x3000
+.ORIG x3000
 
     lea r0, InputPrompt
     puts
@@ -28,6 +28,6 @@ FibLoop
     halt
 
 InputPrompt     .STRINGZ "Input a number 1-9: "
-NegAsciiZero    .FILL -0x30
+NegAsciiZero    .FILL -x30
 
 .END
