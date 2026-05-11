@@ -104,3 +104,18 @@ trap_aliases = {
 	geth   = 0x2d,
 }
 ```
+
+<details><summary>tiny-inline-diagnostic.nvim</summary>
+
+[tiny-inline-diagnostic.nvim](https://github.com/rachartier/tiny-inline-diagnostic.nvim) triggers on `LspAttach` by
+default. Since this is not an LSP, it does not trigger it. To activate it, modify your config to activate on more broad
+events as such:
+
+```lua
+require("tiny-inline-diagnostic").setup({
+  -- react to all diagnostic sources, not just LSP
+  overwrite_events = { "LspAttach", "DiagnosticChanged", "BufEnter" },
+})
+```
+
+</details>
